@@ -45,7 +45,7 @@ switch u
   case 'pt', u = 'points';
 end
   
-p = 0.01;
+p = 0.00 ; % Amount of padding required to be around the image
 
 set(gcf,'Units',u);
 screenpos = get(gcf,'Position');
