@@ -16,6 +16,18 @@ function figuresize( w , h , u )
 %
 % Copyright and licence information appended.
 
+switch nargin
+  case 2
+    u = 'cm';
+  case 1
+    u = 'cm';
+    h = 0;
+  case 0
+    u = 'cm';
+    h = 0;
+    w = 21.0; % Set default size to A4 paper size
+end
+
 p = inputParser;
 p.addRequired('width', @(x) isnumeric(x) && all(size(x)==1) );
 p.addRequired('height',@(x) isnumeric(x) && all(size(x)==1) );
@@ -37,6 +49,10 @@ p = 0.01;
 
 set(gcf,'Units',u);
 screenpos = get(gcf,'Position');
+
+if h==0
+  h=screenpos(4)/screenpos(3) * w;
+end
 
 set(gcf,...
   'Position',[screenpos(1:2) w h],...
